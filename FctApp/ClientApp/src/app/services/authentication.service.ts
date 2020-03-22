@@ -35,7 +35,7 @@ export class AuthenticationService {
   }
   isLoggedIn(): boolean {
     let result: boolean = false;
-    result = localStorage.getItem('currentUser') != null;
+    result = this.currentUserValue != null;
     return result;
   }
 

@@ -39,7 +39,7 @@ var AuthenticationService = /** @class */ (function () {
     };
     AuthenticationService.prototype.isLoggedIn = function () {
         var result = false;
-        result = localStorage.getItem('currentUser') != null;
+        result = this.currentUserValue != null;
         return result;
     };
     AuthenticationService.prototype.logout = function () {
