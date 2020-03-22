@@ -1,0 +1,34 @@
+<h3>Cart Info</h3>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Sub Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td align="center"><a (click)="remove(item.product.id)">X</a></td>
+      <td>{{item.product.id}}</td>
+      <td>{{item.product.name}}</td>
+      <td>{{item.product.price}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.product.price * item.quantity}}</td>
+    </tr>
+    <tr>
+      <td colspan="5" align="right">Total</td>
+      <td>{{total}}</td>
+    </tr>
+    <tr *ngIf="isanyitemincart">
+      <td colspan="6"> <button class="btn btn-primary" (click)="PurchaseItems()">Purchase Now</button> </td>
+    </tr>
+  </tbody>
+
+</table>

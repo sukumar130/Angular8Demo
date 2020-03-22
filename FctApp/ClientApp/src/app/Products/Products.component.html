@@ -1,0 +1,28 @@
+<p *ngIf="!products"><em>Loading...</em></p>
+<p *ngIf="!error"><em>{{error}}</em></p>
+
+<div *ngIf="products">
+
+  Available Products : {{totalProducts}}
+  <span style="padding-left:8em;"><a [routerLink]="['/cart']">Cart</a></span>
+
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th (click) ="sortby('price')" style="cursor:pointer;">Price <span [class]="sortedCssClass"></span></th>
+        <th>Buy?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.price }}</td>
+        <td><a [routerLink]="['/cart', { id:p.id }]">Buy Now</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
