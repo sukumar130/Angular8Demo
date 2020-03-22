@@ -64,6 +64,7 @@ namespace FctApp.Controllers
                 Expires = DateTime.UtcNow.AddMinutes(120),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var result = tokenHandler.WriteToken(token);
             return result;
