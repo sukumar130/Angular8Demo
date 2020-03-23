@@ -1,20 +1,23 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, OnInit } from '@angular/core';
 import { Product } from '../entities/product.entity';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { map, first } from 'rxjs/operators';
 
 @Injectable()
-export class ProductService {
+export class ProductService implements OnInit{
 
   private products: Product[];
-  constructor(private http: HttpClient)
-  {
+
+  constructor(private http: HttpClient) {  }
+
+  getProducts() {
     let url = environment.apiUrl + '/fct/products';
-    console.log(url);
-    http.get<Product[]>(url).subscribe(result => {
+    return this.http.get<Product[]>(url).pipe(map(result => {
       this.products = result;
-    }, error => console.error(error));
-  }
+      return result;
+    }));
+ }
 
   findAll(): Product[] {
     return this.products;
@@ -31,6 +34,17 @@ export class ProductService {
       }
     }
     return -1;
+  }
+
+  ngOnInit() {
+    this.getProducts()
+        .pipe(first())
+        .subscribe(res => {
+          this.products = res;
+        },
+        error => {
+          console.error(error);
+        });
   }
 
 }

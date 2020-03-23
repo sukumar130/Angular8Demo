@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map, first } from 'rxjs/operators';
 import { Product } from '../entities/product.entity';
 import { ProductService } from '../services/product.service';
 import { environment } from '../../environments/environment';
@@ -9,25 +10,13 @@ import { environment } from '../../environments/environment';
   templateUrl: './products.component.html'
 })
 
+@Injectable()
 export class ProductsComponent implements OnInit {
   public totalProducts: number = 0;
   public products: Product[];
   public error: string ;
 
-  constructor(private http: HttpClient, private productService: ProductService) {
-    let url = environment.apiUrl + '/fct/products';
-    //console.log(url);
-    http.get<Product[]>(url).subscribe(
-      result => {
-      this.products = result;
-      this.totalProducts = this.products.length;
-      },
-      error => {
-        this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
-        console.error(error);
-      });
-
-  }
+  constructor(private http: HttpClient, private productService: ProductService) { }
 
   public isPriceAsc: boolean = true;
   public sortedCssClass: string = "arrow-up";
@@ -50,6 +39,18 @@ export class ProductsComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.productService
+        .getProducts()
+        .pipe(first())
+        .subscribe(res => {
+          this.products = res;
+          this.totalProducts = this.products.length;
+        },
+        error => {
+        this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
+        console.error(error);
+      });
+ }
 
-  }
+
 }

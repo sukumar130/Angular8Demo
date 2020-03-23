@@ -7,24 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var environment_1 = require("../../environments/environment");
+var operators_1 = require("rxjs/operators");
 var ProductsComponent = /** @class */ (function () {
     function ProductsComponent(http, productService) {
-        var _this = this;
         this.http = http;
         this.productService = productService;
         this.totalProducts = 0;
         this.isPriceAsc = true;
         this.sortedCssClass = "arrow-up";
-        var url = environment_1.environment.apiUrl + '/fct/products';
-        //console.log(url);
-        http.get(url).subscribe(function (result) {
-            _this.products = result;
-            _this.totalProducts = _this.products.length;
-        }, function (error) {
-            _this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
-            console.error(error);
-        });
     }
     ProductsComponent.prototype.sortby = function (colmun) {
         var array = this.products;
@@ -42,12 +32,24 @@ var ProductsComponent = /** @class */ (function () {
     };
     ;
     ProductsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productService
+            .getProducts()
+            .pipe(operators_1.first())
+            .subscribe(function (res) {
+            _this.products = res;
+            _this.totalProducts = _this.products.length;
+        }, function (error) {
+            _this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
+            console.error(error);
+        });
     };
     ProductsComponent = __decorate([
         core_1.Component({
             selector: 'app-products',
             templateUrl: './products.component.html'
-        })
+        }),
+        core_1.Injectable()
     ], ProductsComponent);
     return ProductsComponent;
 }());
