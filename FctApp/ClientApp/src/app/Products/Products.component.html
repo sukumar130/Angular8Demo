@@ -1,5 +1,5 @@
-<p *ngIf="!products"><em>Loading...</em></p>
-<p *ngIf="!error"><em>{{error}}</em></p>
+<p *ngIf="!products && !error"><em>Loading...</em></p>
+<p *ngIf="error"><em>{{error}}</em></p>
 
 <div *ngIf="products">
 

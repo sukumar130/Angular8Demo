@@ -22,7 +22,7 @@ var ProductsComponent = /** @class */ (function () {
             _this.products = result;
             _this.totalProducts = _this.products.length;
         }, function (error) {
-            _this.error = "There might have API or Database not responding. Please contact to Application Admin.";
+            _this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
             console.error(error);
         });
     }

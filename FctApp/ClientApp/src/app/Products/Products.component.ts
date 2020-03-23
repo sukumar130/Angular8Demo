@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
       this.totalProducts = this.products.length;
       },
       error => {
-        this.error = "There might have API or Database not responding. Please contact to Application Admin.";
+        this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
         console.error(error);
       });
 
