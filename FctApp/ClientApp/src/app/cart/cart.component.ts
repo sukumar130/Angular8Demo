@@ -31,6 +31,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       var id = params['id'];
+
       if (id) {
         var item: Item = {
           product: this.productService.find(id),

@@ -9,13 +9,22 @@ export class ProductService implements OnInit{
 
   private products: Product[];
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+    this.getProducts()
+      .pipe(first())
+      .subscribe(res => {
+        this.products = res;
+      },
+      error => {
+        console.error(error);
+      });
+  }
 
   getProducts() {
     let url = environment.apiUrl + '/fct/products';
+    //return this.http.get<Product[]>(url);
     return this.http.get<Product[]>(url).pipe(map(result => {
-      this.products = result;
-      return result;
+       return result;
     }));
  }
 
@@ -37,14 +46,14 @@ export class ProductService implements OnInit{
   }
 
   ngOnInit() {
-    this.getProducts()
-        .pipe(first())
-        .subscribe(res => {
-          this.products = res;
-        },
-        error => {
-          console.error(error);
-        });
+    //this.getProducts()
+    //    .pipe(first())
+    //    .subscribe(res => {
+    //      this.products = res;
+    //    },
+    //    error => {
+    //      console.error(error);
+    //    });
   }
 
 }

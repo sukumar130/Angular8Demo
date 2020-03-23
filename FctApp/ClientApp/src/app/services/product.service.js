@@ -11,13 +11,20 @@ var environment_1 = require("../../environments/environment");
 var operators_1 = require("rxjs/operators");
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
+        var _this = this;
         this.http = http;
+        this.getProducts()
+            .pipe(operators_1.first())
+            .subscribe(function (res) {
+            _this.products = res;
+        }, function (error) {
+            console.error(error);
+        });
     }
     ProductService.prototype.getProducts = function () {
-        var _this = this;
         var url = environment_1.environment.apiUrl + '/fct/products';
+        //return this.http.get<Product[]>(url);
         return this.http.get(url).pipe(operators_1.map(function (result) {
-            _this.products = result;
             return result;
         }));
     };
@@ -36,14 +43,14 @@ var ProductService = /** @class */ (function () {
         return -1;
     };
     ProductService.prototype.ngOnInit = function () {
-        var _this = this;
-        this.getProducts()
-            .pipe(operators_1.first())
-            .subscribe(function (res) {
-            _this.products = res;
-        }, function (error) {
-            console.error(error);
-        });
+        //this.getProducts()
+        //    .pipe(first())
+        //    .subscribe(res => {
+        //      this.products = res;
+        //    },
+        //    error => {
+        //      console.error(error);
+        //    });
     };
     ProductService = __decorate([
         core_1.Injectable()
