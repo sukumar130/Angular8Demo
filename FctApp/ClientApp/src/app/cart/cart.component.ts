@@ -7,6 +7,7 @@ import { ProductService } from '../services/product.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service';
 import { Purchase } from '../entities/purchase.entity';
+import { environment } from '../../environments/environment';
 
 @Component({
   templateUrl: 'cart.component.html'
@@ -114,7 +115,7 @@ export class CartComponent implements OnInit {
       });
     }
 
-    let url = this.baseUrl + 'fct/purchaseitems';
+    let url = environment.apiUrl + '/fct/purchaseitems';
     this.http.post<Purchase[]>(url, purchaseitems)
       .subscribe(result => {
         if (result) {

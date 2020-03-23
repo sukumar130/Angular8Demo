@@ -5,16 +5,14 @@ import { map } from 'rxjs/operators';
 
 //import { environment } from '@environments/environment';
 import { User } from '../entities/username.entity';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(
-    private http: HttpClient,
-    @Inject('BASE_URL') private baseUrl: string
-  ) {
+  constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -24,7 +22,7 @@ export class AuthenticationService {
   }
 
   login(userpwd : User) {
-    let url = this.baseUrl + 'login/auth';
+    let url = environment.apiUrl + '/login/auth';
     return this.http.post<User>(url, userpwd)
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../entities/product.entity';
 import { ProductService } from '../services/product.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -13,12 +14,8 @@ export class ProductsComponent implements OnInit {
   public products: Product[];
   public error: string ;
 
-  constructor(
-    private http: HttpClient,
-    @Inject('BASE_URL') private baseUrl: string,
-    private productService: ProductService
-  ) {
-    let url = this.baseUrl + 'fct/products';
+  constructor(private http: HttpClient, private productService: ProductService) {
+    let url = environment.apiUrl + '/fct/products';
     //console.log(url);
     http.get<Product[]>(url).subscribe(
       result => {

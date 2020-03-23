@@ -10,6 +10,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var environment_1 = require("../../environments/environment");
 var CartComponent = /** @class */ (function () {
     function CartComponent(activatedRoute, productService, http, router, baseUrl, authenticationService) {
         this.activatedRoute = activatedRoute;
@@ -106,7 +107,7 @@ var CartComponent = /** @class */ (function () {
                 userid: userid
             });
         }
-        var url = this.baseUrl + 'fct/purchaseitems';
+        var url = environment_1.environment.apiUrl + '/fct/purchaseitems';
         this.http.post(url, purchaseitems)
             .subscribe(function (result) {
             if (result) {

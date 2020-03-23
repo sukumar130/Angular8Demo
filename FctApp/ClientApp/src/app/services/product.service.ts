@@ -1,25 +1,15 @@
 import { Injectable, Inject } from '@angular/core';
 import { Product } from '../entities/product.entity';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ProductService {
 
   private products: Product[];
-
-  //constructor() {
-  //  this.products = [
-  //    { id: 1, name: 'name 1', price: 100 },
-  //    { id: 2, name: 'name 2', price: 200 },
-  //    { id: 3, name: 'name 3', price: 300 }
-  //  ];
-  //}
-
-  constructor(
-      private http: HttpClient,
-      @Inject('BASE_URL') private baseUrl: string)
+  constructor(private http: HttpClient)
   {
-    let url = this.baseUrl + 'fct/products';
+    let url = environment.apiUrl + '/fct/products';
     console.log(url);
     http.get<Product[]>(url).subscribe(result => {
       this.products = result;

@@ -5,21 +5,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var environment_1 = require("../../environments/environment");
 var ProductsComponent = /** @class */ (function () {
-    function ProductsComponent(http, baseUrl, productService) {
+    function ProductsComponent(http, productService) {
         var _this = this;
         this.http = http;
-        this.baseUrl = baseUrl;
         this.productService = productService;
         this.totalProducts = 0;
         this.isPriceAsc = true;
         this.sortedCssClass = "arrow-up";
-        var url = this.baseUrl + 'fct/products';
+        var url = environment_1.environment.apiUrl + '/fct/products';
         //console.log(url);
         http.get(url).subscribe(function (result) {
             _this.products = result;
@@ -50,8 +47,7 @@ var ProductsComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-products',
             templateUrl: './products.component.html'
-        }),
-        __param(1, core_1.Inject('BASE_URL'))
+        })
     ], ProductsComponent);
     return ProductsComponent;
 }());
