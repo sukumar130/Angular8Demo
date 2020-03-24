@@ -20,6 +20,7 @@
         <td>{{ p.name }}</td>
         <td>{{ p.price }}</td>
         <td><a [routerLink]="['/cart', { id:p.id }]">Buy Now</a></td>
+        <!--<td><a [routerLink]="['/cart', p.id]">Buy Now</a></td>-->
       </tr>
     </tbody>
   </table>

@@ -38,7 +38,9 @@ import { ErrorInterceptor } from './services/error.interceptor';
       { path: 'login', component: LoginComponent },
       { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
       { path: 'cart', component: CartComponent },
-      { path: 'logout', component: LogoutComponent }
+      //{ path: 'cart/:id', component: CartComponent },
+      { path: 'logout', component: LogoutComponent },
+      { path: '**', component: HomeComponent } //not found, go home
     ])
   ],
   providers: [
