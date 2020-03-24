@@ -13,6 +13,7 @@ var ProductsComponent = /** @class */ (function () {
         this.http = http;
         this.productService = productService;
         this.totalProducts = 0;
+        this.pageStatus = "Loading...";
         this.isPriceAsc = true;
         this.sortedCssClass = "arrow-up";
     }
@@ -40,7 +41,7 @@ var ProductsComponent = /** @class */ (function () {
             _this.products = res;
             _this.totalProducts = _this.products.length;
         }, function (error) {
-            _this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
+            _this.pageStatus = "There might have an API or Database not responding. Please contact to Application Admin.";
             console.error(error);
         });
     };

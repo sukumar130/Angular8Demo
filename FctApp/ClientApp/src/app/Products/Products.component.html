@@ -1,10 +1,9 @@
-<p *ngIf="!products && !error"><em>Loading...</em></p>
-<p *ngIf="error"><em>{{error}}</em></p>
+<p *ngIf="!products"><em>{{pageStatus}}</em></p>
 
 <div *ngIf="products">
 
   Available Products : {{totalProducts}}
-  <span style="padding-left:8em;"><a [routerLink]="['/cart']">Cart</a></span>
+  <span style="padding-left:8em;"><a [routerLink]="['/cart']" class="btn btn-primary">Shopping Cart</a></span>
 
   <table class='table table-striped' aria-labelledby="tableLabel">
     <thead>

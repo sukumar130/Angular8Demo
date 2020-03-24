@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 export class ProductsComponent implements OnInit {
   public totalProducts: number = 0;
   public products: Product[];
-  public error: string ;
+  public pageStatus: string ="Loading...";
 
   constructor(private http: HttpClient, private productService: ProductService) { }
 
@@ -47,7 +47,7 @@ export class ProductsComponent implements OnInit {
           this.totalProducts = this.products.length;
         },
         error => {
-        this.error = "There might have an API or Database not responding. Please contact to Application Admin.";
+        this.pageStatus = "There might have an API or Database not responding. Please contact to Application Admin.";
         console.error(error);
       });
  }
