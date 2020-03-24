@@ -22,8 +22,7 @@ namespace FctApp.Controllers
         private IConfiguration _config;
         private readonly IDataAccess _dataAccess;
 
-        private List<Customer> _users = new List<Customer>
-        {
+        private List<Customer> _users = new List<Customer> {
             new Customer { Id = 1, Name="admin", Email="admin@gmail.com", Password="admin" }
         };
 
@@ -37,16 +36,14 @@ namespace FctApp.Controllers
         [HttpPost("auth")]
         public async Task<IActionResult> Login([FromBody]Customer login)
         {
-            IActionResult response = NotFound("Username or password is incorrect");
+            IActionResult response = NotFound("Username or password is incorrect, try again please!");
 
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
             var user = await AuthenticateUser(login);
 
-            if (user != null)
-            {
+            if (user != null) {
                 var tokenString = GenerateJSONWebToken(user);
                 user.Token = tokenString;
                 response = Ok(user);

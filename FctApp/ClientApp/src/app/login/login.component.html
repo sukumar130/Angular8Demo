@@ -25,7 +25,14 @@
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           Login
         </button>
-        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        <!--<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>-->
+
+        <div class="alert alert-danger mt-3 mb-0" role="alert" *ngIf="errors.length > 0">
+          <ul>
+            <li *ngFor="let error of errors"> {{ error }} </li>
+          </ul>
+        </div>
+
       </form>
     </div>
   </div>

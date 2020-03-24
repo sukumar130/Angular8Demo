@@ -21,8 +21,8 @@ var ErrorInterceptor = /** @class */ (function () {
                 _this.authenticationService.logout();
                 location.reload(true);
             }
-            var error = err.error.message || err.statusText;
-            return rxjs_1.throwError(error);
+            //const error = err.error.message || err.statusText; //commented out because it is suppressing validation error
+            return rxjs_1.throwError(err);
         }));
     };
     ErrorInterceptor = __decorate([

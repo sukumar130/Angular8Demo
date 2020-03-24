@@ -17,8 +17,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         location.reload(true);
       }
 
-      const error = err.error.message || err.statusText;
-      return throwError(error);
+      //const error = err.error.message || err.statusText; //commented out because it is suppressing validation error
+      return throwError(err);
     }))
   }
 

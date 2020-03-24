@@ -20,6 +20,7 @@ namespace FctApp.ApiResource
     {
         public int   Id { get; set; }
         [Required]
+        [StringLength(12, MinimumLength = 3, ErrorMessage = "You must specify userid between 3 and 12 chars.")]
         public string Name { get; set; }
         [Required]
         [StringLength(12, MinimumLength = 3, ErrorMessage = "You must specify password between 3 and 12 chars.")]

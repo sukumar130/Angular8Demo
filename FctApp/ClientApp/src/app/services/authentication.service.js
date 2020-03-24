@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
 var environment_1 = require("../../environments/environment");
@@ -26,7 +27,8 @@ var AuthenticationService = /** @class */ (function () {
     AuthenticationService.prototype.login = function (userpwd) {
         var _this = this;
         var url = environment_1.environment.apiUrl + '/login/auth';
-        return this.http.post(url, userpwd)
+        var headers = new http_1.HttpHeaders().append('Content-Type', 'application/json');
+        return this.http.post(url, userpwd, { headers: headers })
             .pipe(operators_1.map(function (user) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
