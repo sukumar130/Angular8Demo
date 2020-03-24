@@ -37,7 +37,12 @@ namespace FctApp.Controllers
         [HttpPost("auth")]
         public async Task<IActionResult> Login([FromBody]Customer login)
         {
-            IActionResult response = NotFound("Username or password is incorrect"); 
+            IActionResult response = NotFound("Username or password is incorrect");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var user = await AuthenticateUser(login);
 
             if (user != null)

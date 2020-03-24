@@ -22,6 +22,7 @@ namespace FctApp.ApiResource
         [Required]
         public string Name { get; set; }
         [Required]
+        [StringLength(12, MinimumLength = 3, ErrorMessage = "You must specify password between 3 and 12 chars.")]
         public string Password { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
