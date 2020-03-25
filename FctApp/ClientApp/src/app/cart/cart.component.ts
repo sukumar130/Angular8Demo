@@ -129,6 +129,9 @@ export class CartComponent implements OnInit {
       }, error => console.error(error));
   }
 
+  BackToProducts(): void{
+    this.router.navigate(['/products']);
+  }
   //PurchaseItems(): void {
   //  this.total = 0;
   //  this.items = [];

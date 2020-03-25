@@ -121,6 +121,9 @@ var CartComponent = /** @class */ (function () {
             //console.log('Posted ' + result);
         }, function (error) { return console.error(error); });
     };
+    CartComponent.prototype.BackToProducts = function () {
+        this.router.navigate(['/products']);
+    };
     CartComponent = __decorate([
         core_1.Component({
             templateUrl: 'cart.component.html'

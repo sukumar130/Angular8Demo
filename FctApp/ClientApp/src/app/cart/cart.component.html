@@ -26,9 +26,14 @@
       <td colspan="5" align="right">Total</td>
       <td>{{total}}</td>
     </tr>
-    <tr *ngIf="isanyitemincart">
-      <td colspan="6"> <button class="btn btn-primary" (click)="PurchaseItems()">Purchase Now</button> </td>
+
+    <tr>
+      <td colspan="6">
+        <span *ngIf="isanyitemincart" style="padding-right:0.5em;"><button class="btn btn-primary" (click)="PurchaseItems()">Purchase Now</button></span>
+        <span><button class="btn btn-primary" (click)="BackToProducts()">Back To Products List</button></span>
+      </td>
     </tr>
+
   </tbody>
 
 </table>
