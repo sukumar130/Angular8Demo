@@ -1,8 +1,10 @@
 using FctApp.Business;
+using FctApp.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,15 +26,15 @@ namespace FctApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllersWithViews();
 
             var key = Encoding.ASCII.GetBytes(Configuration["Jwt:Key"]);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
             })
+
             .AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = false;
@@ -45,6 +47,9 @@ namespace FctApp
                     ValidateAudience = false
                 };
             });
+
+            services.AddDbContext<FctDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FctDbConnection")));
+
             services.AddScoped<IDataAccess, DataAccess>();
 
             services.AddCors(options =>
@@ -98,9 +103,6 @@ namespace FctApp
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())

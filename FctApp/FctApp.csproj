@@ -16,6 +16,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
@@ -26,6 +35,17 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200710222032_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200710222032_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200710222823_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200710222823_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200710223754_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200710223754_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200710224021_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200710224021_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,10 +78,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\services\error.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\jwt.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\product.service.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Database\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

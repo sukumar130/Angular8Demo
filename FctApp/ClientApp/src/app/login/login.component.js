@@ -58,7 +58,8 @@ var LoginComponent = /** @class */ (function () {
             .subscribe(function (data) {
             _this.router.navigate([_this.returnUrl]);
         }, function (error) {
-            console.log(error);
+            //console.log(error);
+            //console.log(JSON.stringify(error.error.errors)); //object to json string
             //this.error = 'Username or password is incorrect, try again please!';
             _this.loading = false;
             _this.errors = [];

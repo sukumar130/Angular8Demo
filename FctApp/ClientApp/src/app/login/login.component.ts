@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         (error: HttpErrorResponse) => {
-          console.log(error);
+          //console.log(error);
+          //console.log(JSON.stringify(error.error.errors)); //object to json string
           //this.error = 'Username or password is incorrect, try again please!';
           this.loading = false;
           this.errors = [];

@@ -63,7 +63,7 @@ namespace FctApp.Controllers
                 {
                     new Claim(ClaimTypes.Name, userInfo.Name)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(120),
+                Expires = DateTime.UtcNow.AddMinutes(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
