@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FctApp.Database.Models
+namespace FctApp.Core.Models
 {
 
     public class tblPurchase
@@ -14,6 +14,7 @@ namespace FctApp.Database.Models
         public int Quantity { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
+
         //public ICollection<tblProduct> tblProducts { get; set; }
         //public tblPurchase()
         //{

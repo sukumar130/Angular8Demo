@@ -5,16 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FctApp.Database.Models
+namespace FctApp.Core.Models
 {
-    [Table("tblProducts")]
-    public class tblProduct
+ 
+    [Table("tblCustomers")]
+    public class tblCustomer
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public string Token { get; set; }
     }
-
 
  
 }

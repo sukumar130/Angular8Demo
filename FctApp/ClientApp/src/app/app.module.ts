@@ -1,22 +1,22 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule }             from '@angular/core';
+import { BrowserModule }        from '@angular/platform-browser';
+import { FormsModule }          from '@angular/forms';
+import { ReactiveFormsModule }  from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule }         from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './Products/Products.component';
-import { CartComponent } from './Cart/Cart.component';
-import { LoginComponent } from './login/login.component'
-import { LogoutComponent } from './logout/logout.component'
+import { AppComponent }       from './app.component';
+import { NavMenuComponent }   from './nav-menu/nav-menu.component';
+import { HomeComponent }      from './home/home.component';
+import { ProductsComponent }  from './Products/Products.component';
+import { CartComponent }      from './Cart/Cart.component';
+import { LoginComponent }     from './login/login.component'
+import { LogoutComponent }    from './logout/logout.component'
 
-import { ProductService } from './services/product.service';
-import { AuthGuard } from './services/auth.guard';
-import { JwtInterceptor } from './services/jwt.interceptor';
-import { ErrorInterceptor } from './services/error.interceptor';
+import { ProductService }     from './services/product.service';
+import { AuthGuard }          from './services/auth.guard';
+import { JwtInterceptor }     from './services/jwt.interceptor';
+import { ErrorInterceptor }   from './services/error.interceptor';
 
 @NgModule({
   declarations: [

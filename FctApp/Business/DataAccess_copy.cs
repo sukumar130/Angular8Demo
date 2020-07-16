@@ -8,7 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using FctApp.Database;
 using Microsoft.EntityFrameworkCore;
-using FctApp.Database.Models;
+using FctApp.Core.Models;
+using FctApp.Core;
 
 namespace FctApp.Business
 {

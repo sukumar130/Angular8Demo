@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FctApp.Business
+namespace FctApp.Core
 {
     public interface IDataAccess
     {
